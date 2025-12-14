@@ -53,7 +53,9 @@ function App() {
     // after then
     setIsLoading(false);
   }
-  
+  useEffect(() => {
+    init();
+  },[]);
   return <>
     <GlobalStyle />
     {isLoading ? "Loading..." : <RouterProvider router={router} />}
