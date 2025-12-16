@@ -7,6 +7,7 @@ import CreateAccount from "./routes/create-account";
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
 import { useEffect, useState } from "react";
+import LoadingScreen from "./components/loading-screen";
 
 const GlobalStyle = createGlobalStyle`
 ${reset};
@@ -51,14 +52,15 @@ function App() {
   const init = async() => {
     // wait for firebase
     // after then
-    setIsLoading(false);
+    //setIsLoading(false);
+    setTimeout(() => setIsLoading(false), 2000);
   }
   useEffect(() => {
     init();
   },[]);
   return <>
     <GlobalStyle />
-    {isLoading ? "Loading..." : <RouterProvider router={router} />}
+    {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
   </>
 }
 
