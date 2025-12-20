@@ -20,10 +20,7 @@ export default function CreateAccount(){
             setEmail(value);
         }
     }
-    const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log(name, email, password);
-    }
+    
     
     return (
         <Wrapper>
