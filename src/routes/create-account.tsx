@@ -27,7 +27,7 @@ export default function CreateAccount(){
     
     return (
         <Wrapper>
-            <Form>
+            <Form onSubmit={onSubmit}>
                 <Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required/>
                 <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required/>
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
