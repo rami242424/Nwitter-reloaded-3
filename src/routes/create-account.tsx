@@ -10,6 +10,7 @@ export default function CreateAccount(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { target : {name, value} } = e;
         if(name === "name") {
@@ -20,7 +21,20 @@ export default function CreateAccount(){
             setEmail(value);
         }
     }
-    
+    const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            // create an account
+            // set the name of the user profile
+            // redirect to the homepage
+        } catch(e) {
+            // setError
+        } finally {
+            setLoading(false);
+        }
+
+        console.log(name, email, password);
+    }
     
     return (
         <Wrapper>
@@ -28,7 +42,7 @@ export default function CreateAccount(){
                 <Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required/>
                 <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required/>
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
-                <Input type="submit" value="Create Account"/>
+                <Input type="submit" value={ isLoading ? "Loading..." : "Create Account"}/>
             </Form>
         </Wrapper>
     );
