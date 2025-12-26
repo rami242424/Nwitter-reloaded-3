@@ -27,6 +27,9 @@ const Input = styled.input`
     font-size: 16px;
     &[type="submit"]{
         cursor: pointer;
+        &:hover {
+            opacity: 0.8;
+        }
     }
 `;
 
