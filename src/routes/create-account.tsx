@@ -33,6 +33,11 @@ const Input = styled.input`
     }
 `;
 
+const Error = styled.span`
+    font-weight: 600;
+    color: tomato;
+`;
+
 export default function CreateAccount(){
     const [isLoading, setLoading] = useState(false);
     const [name, setName] = useState("");
@@ -73,6 +78,7 @@ export default function CreateAccount(){
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
                 <Input type="submit" value={ isLoading ? "Loading..." : "Create Account"}/>
             </Form>
+            {error !== "" ? <Error>{error}</Error> : null}
         </Wrapper>
     );
 }
