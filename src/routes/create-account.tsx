@@ -1,5 +1,7 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import styled from "styled-components";
+import { auth } from "../firebase";
 
 const Wrapper = styled.div`
     height: 100%;
@@ -54,11 +56,15 @@ export default function CreateAccount(){
             setEmail(value);
         }
     }
-    const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             // create an account
+            if(isLoading || name === "" || email === "" || password === "") return;
+            const credentials = await createUserWithEmailAndPassword(auth, email, password);
+            console.log(credentials.user)
             // set the name of the user profile
+            
             // redirect to the homepage
         } catch(e) {
             // setError
@@ -71,7 +77,7 @@ export default function CreateAccount(){
     
     return (
         <Wrapper>
-            <Title>log into ✖️</Title>
+            <Title>Join ✖️</Title>
             <Form onSubmit={onSubmit}>
                 <Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required/>
                 <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required/>
