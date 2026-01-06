@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
 
 const Wrapper = styled.div`
     height: 100%;
@@ -73,7 +74,10 @@ export default function CreateAccount(){
             // redirect to the homepage
             navigate("/");
         } catch(e) {
-            // setError
+            if(e instanceof FirebaseError){
+                //console.log("이건에러코드", e.code, "이건에러메세지", e.message)
+                setError(e.message)
+            }
         } finally {
             setLoading(false);
         }
