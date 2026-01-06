@@ -17,7 +17,7 @@ const Title = styled.h1`
     font-size: 42px;
 `;
 const Form = styled.form`
-    margin-top: 50px;
+    margin: 50px 0px 18px 0px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -61,6 +61,7 @@ export default function CreateAccount(){
     }
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError("");
         try {
             setLoading(true);
             // create an account
@@ -76,13 +77,12 @@ export default function CreateAccount(){
         } catch(e) {
             if(e instanceof FirebaseError){
                 //console.log("이건에러코드", e.code, "이건에러메세지", e.message)
-                setError(e.message)
+                setError(e.message);
             }
         } finally {
             setLoading(false);
         }
-
-        console.log(name, email, password);
+        //console.log(name, email, password);
     }
     
     return (
