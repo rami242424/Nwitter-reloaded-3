@@ -38,7 +38,7 @@ export default function Login(){
     
     return (
         <Wrapper>
-            <Title>log into ✖️</Title>
+            <Title>log into 𝕏</Title>
             <Form onSubmit={onSubmit}>
                 <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required/>
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
