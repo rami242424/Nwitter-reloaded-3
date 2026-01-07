@@ -1,4 +1,8 @@
 import styled from "styled-components"
+import { auth } from "../firebase";
+import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { error } from "console";
+import { useNavigate } from "react-router-dom";
 
 const Button = styled.span`
     margin-top: 40px;
@@ -13,12 +17,23 @@ const Button = styled.span`
     justify-content: center;
     color: black;
     width: 100%;
+    cursor: pointer;
 `;
 const Logo = styled.img`
     height : 25px;
 `;
 export default function GithubBtn(){
-    return <Button>
+    const navigate = useNavigate();
+    const onClick = async() => {
+        try {
+            const provider = new GithubAuthProvider();
+            await signInWithPopup(auth, provider);
+            navigate("/")
+        } catch(error) {
+            console.error(error);
+        }
+    }
+    return <Button onClick={onClick}>
         <Logo src="/public/github-logo.svg"/>
         Continue with Github
     </Button>
