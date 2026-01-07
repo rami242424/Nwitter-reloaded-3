@@ -1,9 +1,10 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth-components";
+import { Error, Form, Input, Switcher, Title, Wrapper } from "../auth-components";
+import GithubBtn from "../github-btn";
 
 
 
@@ -63,6 +64,7 @@ export default function CreateAccount(){
             <Switcher>
                Already have an account yet? <Link to="/login">Login &rarr;</Link>
             </Switcher>
+            <GithubBtn />
         </Wrapper>
     );
 }

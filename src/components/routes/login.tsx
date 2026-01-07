@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth-components";
+import { auth } from "../../firebase";
+import { Error, Form, Input, Switcher, Title, Wrapper } from "../auth-components";
+import GithubBtn from "../github-btn";
 
 export default function Login(){
     const [isLoading, setLoading] = useState(false);
@@ -48,7 +49,7 @@ export default function Login(){
             <Switcher>
                 Don't have an account yet? <Link to="/create-account">Create one &rarr;</Link>
             </Switcher>
-
+            <GithubBtn />
         </Wrapper>
     );
 }
