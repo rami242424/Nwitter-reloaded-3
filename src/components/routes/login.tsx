@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../auth-components";
 import GithubBtn from "../github-btn";
-import ResetPassword from "../reset_password";
+import ResetPassword from "./reset_password";
 
 export default function Login(){
     const [isLoading, setLoading] = useState(false);

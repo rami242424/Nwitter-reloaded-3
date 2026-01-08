@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { auth } from "../firebase";
-import { GithubAuthProvider, sendPasswordResetEmail, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 
 const Button = styled.span`

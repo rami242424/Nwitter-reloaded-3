@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 import { FirebaseError } from "firebase/app";
 import { sendPasswordResetEmail } from "firebase/auth";
 import {
@@ -9,7 +9,7 @@ import {
   Input,
   Title,
   Wrapper
-} from "../components/auth-components";
+} from "../auth-components";
 
 export default function ChangePassword() {
   const navigate = useNavigate();
