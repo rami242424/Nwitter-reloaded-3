@@ -11,7 +11,7 @@ import {
   Wrapper
 } from "../auth-components";
 
-export default function ChangePassword() {
+export default function ResetPassword() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState("");

@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../auth-components";
 import GithubBtn from "../github-btn";
-import ResetPassword from "./reset_password";
+import ResetPassword from "./reset-password";
 
 export default function Login(){
     const [isLoading, setLoading] = useState(false);
@@ -52,7 +52,10 @@ export default function Login(){
                 Don't have an account?
                 <Link to="/create-account"> Create One &rarr;</Link>
             </Switcher>
-            <ResetPassword />
+            <Switcher>
+                Forgot your password?
+                <Link to="/reset-password"> Reset password &rarr;</Link>
+            </Switcher>
         </Wrapper>
     );
 }
