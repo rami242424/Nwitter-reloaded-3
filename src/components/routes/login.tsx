@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../auth-components";
 import GithubBtn from "../github-btn";
+import ResetPassword from "../reset_password";
 
 export default function Login(){
     const [isLoading, setLoading] = useState(false);
@@ -45,11 +46,13 @@ export default function Login(){
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
                 <Input type="submit" value={ isLoading ? "Loading..." : "Login"}/>
             </Form>
+            <GithubBtn />
             {error !== "" ? <Error>{error}</Error> : null}
             <Switcher>
-                Don't have an account yet? <Link to="/create-account">Create one &rarr;</Link>
+                Don't have an account?
+                <Link to="/create-account"> Create One &rarr;</Link>
             </Switcher>
-            <GithubBtn />
+            <ResetPassword />
         </Wrapper>
     );
 }

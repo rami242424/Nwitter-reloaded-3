@@ -1,14 +1,12 @@
 import styled from "styled-components"
 import { auth } from "../firebase";
-import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
-import { error } from "console";
+import { GithubAuthProvider, sendPasswordResetEmail, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 
 const Button = styled.span`
-    margin-top: 40px;
     background-color: white;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 5px 0px;
     border-radius: 50px;
     border: 0;
     display: flex;
@@ -18,6 +16,7 @@ const Button = styled.span`
     color: black;
     width: 100%;
     cursor: pointer;
+    background-color: #bdb4b4;
 `;
 const Logo = styled.img`
     height : 25px;
@@ -28,7 +27,9 @@ export default function GithubBtn(){
         try {
             const provider = new GithubAuthProvider();
             await signInWithPopup(auth, provider);
-            navigate("/")
+            navigate("/");
+            // reset password
+            //sendPasswordResetEmail(auth, email)
         } catch(error) {
             console.error(error);
         }

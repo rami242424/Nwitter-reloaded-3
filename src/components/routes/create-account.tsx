@@ -60,11 +60,11 @@ export default function CreateAccount(){
                 <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required/>
                 <Input type="submit" value={ isLoading ? "Loading..." : "Create Account"}/>
             </Form>
+            <GithubBtn />
             {error !== "" ? <Error>{error}</Error> : null}
             <Switcher>
                Already have an account yet? <Link to="/login">Login &rarr;</Link>
             </Switcher>
-            <GithubBtn />
         </Wrapper>
     );
 }
