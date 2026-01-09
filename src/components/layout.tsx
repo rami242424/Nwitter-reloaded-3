@@ -1,8 +1,25 @@
 import { Outlet } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper = styled.div``;
+
+const Menu = styled.div``;
+
+const MenuItem = styled.div``;
 
 export default function Layout(){
     return <>
-        <h1>레이아웃</h1>
-        <Outlet />
+        <Wrapper>
+            <Menu>
+                <MenuItem>
+                </MenuItem>
+                <MenuItem>
+                </MenuItem>
+                <MenuItem>
+                </MenuItem>
+                
+            </Menu>
+            <Outlet />
+        </Wrapper>
     </>
 }
