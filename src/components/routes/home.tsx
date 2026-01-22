@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import PostTweetForm from "../post-tweet-form";
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+const Wrapper = styled.div``;
 
 export default function Home(){
     return <Wrapper>
