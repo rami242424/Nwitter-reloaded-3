@@ -11,7 +11,7 @@ export default function PostTweetForm(){
     return <Form>
         <TextArea placeholder="What is happening?"/>
         <AttachFileButton htmlFor="file">Add photo</AttachFileButton>
-        <AttachFileInput id="file" accept="image/*"/>
+        <AttachFileInput id="file" type="file" accept="image/*"/>
         <SubmitBtn />
     </Form>
 }
