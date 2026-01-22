@@ -68,7 +68,7 @@ export default function PostTweetForm(){
         }
     }
     return <Form>
-        <TextArea rows={5} maxL ength={180} onChange={onChange} value={tweet} placeholder="What is happening?"/>
+        <TextArea rows={5} maxLength={200} onChange={onChange} value={tweet} placeholder="What is happening?"/>
         <AttachFileButton htmlFor="file">{file ? "Photo added✅" : "Add photo"}</AttachFileButton>
         <AttachFileInput onChange={onFileChange} id="file" type="file" accept="image/*"/>
         <SubmitBtn type="submit" value={isLoading? "Posting..." : "Post Tweet"}/>
