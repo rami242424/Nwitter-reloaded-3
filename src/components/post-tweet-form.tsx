@@ -61,10 +61,16 @@ export default function PostTweetForm(){
     const onChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setTweet(e.target.value);
     }
+    const onFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const {files} = e.target;
+        if(files && files.length === 1) {
+            setFile(files[0])
+        }
+    }
     return <Form>
-        <TextArea onChange={onChange} value={tweet} placeholder="What is happening?"/>
-        <AttachFileButton htmlFor="file">Add photo</AttachFileButton>
-        <AttachFileInput id="file" type="file" accept="image/*"/>
+        <TextArea rows={5} maxL ength={180} onChange={onChange} value={tweet} placeholder="What is happening?"/>
+        <AttachFileButton htmlFor="file">{file ? "Photo added✅" : "Add photo"}</AttachFileButton>
+        <AttachFileInput onChange={onFileChange} id="file" type="file" accept="image/*"/>
         <SubmitBtn type="submit" value={isLoading? "Posting..." : "Post Tweet"}/>
     </Form>
 }
