@@ -1,5 +1,7 @@
+import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components"
+import { auth, database } from "../firebase";
 
 const Form = styled.form`
     display: flex;
@@ -67,7 +69,27 @@ export default function PostTweetForm(){
             setFile(files[0])
         }
     }
-    return <Form>
+    const onSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const user = auth.currentUser;
+        if(!user || isLoading || tweet === "" || tweet.length > 200) return;
+        // 위의 코드로 트윗이 비어있지 않다는 것 확인 후
+        try {
+            setIsLoading(true);
+            await addDoc(collection(database, "tweets"), {
+                tweet,
+                createdAt: Date.now(),
+                username: user.displayName || "Anonymous",
+                userId: user.uid,
+
+            });
+        } catch(e) {
+            console.log(e);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+    return <Form onSubmit={onSubmit}>
         <TextArea rows={5} maxLength={200} onChange={onChange} value={tweet} placeholder="What is happening?"/>
         <AttachFileButton htmlFor="file">{file ? "Photo added✅" : "Add photo"}</AttachFileButton>
         <AttachFileInput onChange={onFileChange} id="file" type="file" accept="image/*"/>
