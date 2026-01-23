@@ -1,7 +1,8 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components"
-import { auth, database } from "../firebase";
+import { auth, database, storage } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 
 
 
@@ -78,13 +79,16 @@ export default function PostTweetForm(){
         // 위의 코드로 트윗이 비어있지 않다는 것 확인 후
         try {
             setIsLoading(true);
-            await addDoc(collection(database, "tweets"), {
+            const doc = await addDoc(collection(database, "tweets"), {
                 tweet,
                 createdAt: Date.now(),
                 username: user.displayName || "Anonymous",
                 userId: user.uid,
-
             });
+            if(file) {
+                const locationRef = ref(storage, `tweets/${user.uid}-${user.displayName}/${doc.id}`);
+                await uploadBytes(locationRef, file);
+            }
         } catch(e) {
             console.log(e);
         } finally {
@@ -92,9 +96,9 @@ export default function PostTweetForm(){
         }
     }
     return <Form onSubmit={onSubmit}>
-        <TextArea rows={5} maxLength={200} onChange={onChange} value={tweet} placeholder="What is happening?"/>
+        <TextArea required rows={5} maxLength={200} onChange={onChange} value={tweet} placeholder="What is happening?"/>
         <AttachFileButton htmlFor="file">{file ? "Photo added✅" : "Add photo"}</AttachFileButton>
         <AttachFileInput onChange={onFileChange} id="file" type="file" accept="image/*"/>
         <SubmitBtn type="submit" value={isLoading? "Posting..." : "Post Tweet"}/>
     </Form>
-}
+} 
