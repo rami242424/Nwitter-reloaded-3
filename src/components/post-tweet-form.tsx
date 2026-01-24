@@ -86,11 +86,12 @@ export default function PostTweetForm(){
                 userId: user.uid,
             });
             if(file) {
-                const locationRef = ref(storage, `tweets/${user.uid}-${user.displayName}/${doc.id}`);
+                const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
                 await uploadBytes(locationRef, file);
             }
         } catch(e) {
             console.log(e);
+            prompt("fail to posting")
         } finally {
             setIsLoading(false);
         }
