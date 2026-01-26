@@ -2,7 +2,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components"
 import { auth, database, storage } from "../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 
 
@@ -87,11 +87,11 @@ export default function PostTweetForm(){
             });
             if(file) {
                 const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
-                await uploadBytes(locationRef, file);
+                const result = await uploadBytes(locationRef, file);
+                const url = await getDownloadURL(result.ref);
             }
         } catch(e) {
             console.log(e);
-            prompt("fail to posting")
         } finally {
             setIsLoading(false);
         }
