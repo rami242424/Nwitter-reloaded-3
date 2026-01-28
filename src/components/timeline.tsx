@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 export interface ITweet {
     photo: string;
@@ -8,7 +9,14 @@ export interface ITweet {
     createdAt: number;
 }
 
+const Wrapper = styled.div`
+
+`;
 export default function Timeline(){
-    const [tweet, setTweet] = useState<ITweet[]>([]);
-    return <></>;
+    const [tweets, setTweet] = useState<ITweet[]>([]);
+    const fetchTweets = async() => {}
+    useEffect(() => {
+        fetchTweets();
+    }, []);
+    return <Wrapper>{JSON.stringify(tweets)}</Wrapper>;
 }
