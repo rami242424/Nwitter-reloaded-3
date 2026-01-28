@@ -27,6 +27,9 @@ const Photo = styled.img`
     border-radius: 15px;
 `;
 
+const DeleteBtn = styled.button`
+
+`;
 
 export default function Tweet({username, photo, tweet}: ITweet){
     return (
@@ -34,6 +37,7 @@ export default function Tweet({username, photo, tweet}: ITweet){
         <Column>
             <Username>{username}</Username>
             <Payload>{tweet}</Payload>
+            <DeleteBtn>Delete</DeleteBtn>
         </Column>
         <Column>
             { photo ? <Photo src={photo}/> : null }
