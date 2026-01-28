@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { database } from "../firebase";
 
 export interface ITweet {
+    id: string;
     photo: string;
     tweet: string;
     userId: string;
@@ -22,7 +23,17 @@ export default function Timeline(){
             orderBy("createdAt", "desc"),            
         );
         const snapshot = await getDocs(tweetsQuery);
-        snapshot.docs.forEach(doc => console.log(doc.data()));
+        const tweets = snapshot.docs.map((doc) => {
+            const {id, photo, tweet, userId, username, createdAt} = doc.data();
+            return {
+                id:doc.id, 
+                photo, 
+                tweet, 
+                userId, 
+                username, 
+                createdAt
+            }
+        });
     }
     useEffect(() => {
         fetchTweets();
