@@ -28,7 +28,14 @@ const Photo = styled.img`
 `;
 
 const DeleteBtn = styled.button`
-
+    background-color : tomato;
+    color: white;
+    font-weight : 600;
+    border: 0;
+    padding : 5px 10px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
 `;
 
 export default function Tweet({username, photo, tweet}: ITweet){
