@@ -2,10 +2,23 @@ import styled from "styled-components";
 import type { ITweet } from "./timeline";
 
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+    display : grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+`;
 const Column = styled.div``;
-const Username = styled.span``;
-const Payload = styled.p``;
+const Username = styled.span`
+    font-weight: 600;
+    font-size: 15px;
+`;
+const Payload = styled.p`
+    margin: 10px 0px;
+    font-size: 10px;
+
+`;
 const Photo = styled.img``;
 
 
