@@ -19,7 +19,11 @@ const Payload = styled.p`
     font-size: 10px;
 
 `;
-const Photo = styled.img``;
+const Photo = styled.img`
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+`;
 
 
 export default function Tweet({username, photo, tweet}: ITweet){
