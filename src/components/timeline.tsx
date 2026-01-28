@@ -37,7 +37,7 @@ export default function Timeline(){
                 createdAt
             }
         }); */
-        await onSnapshot(tweetsQuery, (snapshot) => {
+        const subscribe = await onSnapshot(tweetsQuery, (snapshot) => {
             const tweets = snapshot.docs.map((doc) => {
                 const {photo, tweet, userId, username, createdAt} = doc.data();
                 return {
