@@ -10,13 +10,15 @@ const Wrapper = styled.div`
     border-radius: 15px;
 `;
 const Column = styled.div``;
+
 const Username = styled.span`
     font-weight: 600;
     font-size: 15px;
 `;
+
 const Payload = styled.p`
     margin: 10px 0px;
-    font-size: 10px;
+    font-size: 18px;
 
 `;
 const Photo = styled.img`
@@ -27,14 +29,17 @@ const Photo = styled.img`
 
 
 export default function Tweet({username, photo, tweet}: ITweet){
-    return <Wrapper>
+    return (
+    <Wrapper>
         <Column>
             <Username>{username}</Username>
             <Payload>{tweet}</Payload>
-            <Photo />
         </Column>
-        {photo ? <Column>
-            <Photo src={photo}/>
-        </Column> : null}
+        {photo ? (
+            <Column>
+                <Photo src={photo}/>
+            </Column>
+        ) : null}
     </Wrapper>
+    );
 }
