@@ -5,7 +5,7 @@ import { database } from "../firebase";
 
 export interface ITweet {
     id: string;
-    photo: string;
+    photo?: string;
     tweet: string;
     userId: string;
     username: string;
@@ -24,7 +24,7 @@ export default function Timeline(){
         );
         const snapshot = await getDocs(tweetsQuery);
         const tweets = snapshot.docs.map((doc) => {
-            const {id, photo, tweet, userId, username, createdAt} = doc.data();
+            const {photo, tweet, userId, username, createdAt} = doc.data();
             return {
                 id:doc.id, 
                 photo, 
@@ -34,6 +34,7 @@ export default function Timeline(){
                 createdAt
             }
         });
+        setTweet(tweets);
     }
     useEffect(() => {
         fetchTweets();
