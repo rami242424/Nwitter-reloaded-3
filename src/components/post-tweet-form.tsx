@@ -91,9 +91,10 @@ export default function PostTweetForm(){
                 const url = await getDownloadURL(result.ref);
                 await updateDoc(doc, {
                     photo : url,
-
-                })
+                });
             }
+            setTweet("");
+            setFile(null);
         } catch(e) {
             console.log(e);
         } finally {
