@@ -66,11 +66,18 @@ export default function PostTweetForm(){
     const onChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setTweet(e.target.value);
     }
+    const MAX_FILE_SIZE = 1024*1024;
     const onFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const {files} = e.target;
-        if(files && files.length === 1) {
-            setFile(files[0])
+        if(!files || files.length !== 1) return;
+        const selectedFile = files[0];
+        //파일용량제한
+        if(selectedFile.size > MAX_FILE_SIZE) {
+            alert("사진 용량이 너무 큽니다.");
+            e.target.value = "";
+            return;
         }
+        setFile(selectedFile);
     }
     const onSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
