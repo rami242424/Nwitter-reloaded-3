@@ -3,10 +3,17 @@ import { auth } from "../../firebase"
 import { useState } from "react";
 
 const Wrapper = styled.div`
-
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
 `;
 const AvatarUpload = styled.label`
-
+    width: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #1d9bf0;
+    cursor: pointer;
 `;
 const AvatarImg = styled.img`
 
