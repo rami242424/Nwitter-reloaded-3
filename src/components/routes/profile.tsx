@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import type { ITweet } from "../timeline";
 
 const Wrapper = styled.div`
     display: flex;
@@ -35,10 +36,17 @@ const UserName = styled.span`
     font-size: 22px;
 `;
 
+const Tweets = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`;
+
 export default function Profile(){
     const user = auth.currentUser;
     //console.log(user, "user")
     const [avatar, setAvatar] = useState(user?.photoURL);
+    const [tweets, setTweets] = useState<ITweet[]>([]);
     const onAvatarChange = async(e:React.ChangeEvent<HTMLInputElement>) => {
         const {files} = e.target;
         if(!user) return;
@@ -64,7 +72,11 @@ export default function Profile(){
         const snapshot = await getDocs(tweetQuery);
         const tweets = snapshot.docs.map((doc) => {
             const {tweet, createdAt, userId, username, photo} = doc.data();
-        })
+            return {
+                tweet, createdAt, userId, username, photo, id: doc.id
+            }
+        });
+        setTweets(tweets);
     }
     useEffect(() => {
 
@@ -81,5 +93,6 @@ export default function Profile(){
         </AvatarUpload>
         <AvatarInput onChange={onAvatarChange} id="avatar" type="file" accept="image/*" />
         <UserName>{user?.displayName ?? "Anonymous"}</UserName>
+        <Tweets></Tweets>
     </Wrapper>
 }
