@@ -1,8 +1,9 @@
 import styled from "styled-components"
-import { auth, storage } from "../../firebase"
-import { useState } from "react";
+import { auth, database, storage } from "../../firebase"
+import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { collection, limit, orderBy, query, where } from "firebase/firestore";
 
 const Wrapper = styled.div`
     display: flex;
@@ -53,6 +54,17 @@ export default function Profile(){
 
         }
     }
+    const fetchTweets = async () => {
+        const tweetQuery = query(
+            collection(database, "tweets"),
+            where("userId", "==", user?.uid),
+            orderBy("createdAt", "desc"),
+            limit(25)
+        )
+    }
+    useEffect(() => {
+
+    }, []);
     return <Wrapper>
         <AvatarUpload htmlFor="avatar">
             {Boolean(avatar) ? (
