@@ -38,16 +38,17 @@ export default function Profile(){
     const user = auth.currentUser;
     //console.log(user, "user")
     const [avatar, setAvatar] = useState(user?.photoURL);
-    const onAvatarChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const onAvatarChange = async(e:React.ChangeEvent<HTMLInputElement>) => {
         const {files} = e.target;
+        if(!user) return;
         if(files && files.length === 1){
             const file = files[0];
             const locationRef = ref(storage, `avatars/${user?.uid}`);
             const result = await uploadBytes(locationRef, file);
-            const url = await getDownloadURL(result.ref);
+            const avatarUrl = await getDownloadURL(result.ref);
+
             await updateProfile(user, {
-                displayName, 
-                photoURL
+                photoURL :avatarUrl
             })
         }
     }
