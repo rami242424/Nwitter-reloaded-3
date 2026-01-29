@@ -22,10 +22,10 @@ export default function Profile(){
     const user = auth.currentUser;
     //console.log(user, "user")
     const [avatar, setAvatar] = useState(user?.photoURL);
-    
+
     return <Wrapper>
         <AvatarUpload>
-            <AvatarImg/>
+            {avatar && <AvatarImg src={avatar}/>}
         </AvatarUpload>
         <AvatarInput type="file" accept="image/*" />
         <UserName>{user?.displayName ?? "Anonymous"}</UserName>
