@@ -23,13 +23,13 @@ const AvatarUpload = styled.label`
     }
 `;
 const AvatarImg = styled.img`
-
+    width: 100%;
 `;
 const AvatarInput = styled.input`
     display: none;
 `;
 const UserName = styled.span`
-
+    font-size: 22px;
 `;
 
 export default function Profile(){
