@@ -10,10 +10,17 @@ const Wrapper = styled.div`
 `;
 const AvatarUpload = styled.label`
     width: 80px;
+    height: 80px;
     overflow: hidden;
     border-radius: 50%;
     background-color: #1d9bf0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+        width: 50px;
+    }
 `;
 const AvatarImg = styled.img`
 
@@ -31,7 +38,7 @@ export default function Profile(){
     const [avatar, setAvatar] = useState(user?.photoURL);
 
     return <Wrapper>
-        <AvatarUpload>
+        <AvatarUpload htmlFor="avatar">
             {Boolean(avatar) ? (
                 <AvatarImg src={avatar}/>
             ) : (
@@ -40,7 +47,7 @@ export default function Profile(){
                 </svg>
             )}
         </AvatarUpload>
-        <AvatarInput type="file" accept="image/*" />
+        <AvatarInput id="avatar" type="file" accept="image/*" />
         <UserName>{user?.displayName ?? "Anonymous"}</UserName>
     </Wrapper>
 }
