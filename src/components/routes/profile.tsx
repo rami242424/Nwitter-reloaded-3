@@ -3,7 +3,7 @@ import { auth, database, storage } from "../../firebase"
 import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
-import { collection, limit, orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 
 const Wrapper = styled.div`
     display: flex;
@@ -60,7 +60,11 @@ export default function Profile(){
             where("userId", "==", user?.uid),
             orderBy("createdAt", "desc"),
             limit(25)
-        )
+        );
+        const snapshot = await getDocs(tweetQuery);
+        const tweets = snapshot.docs.map((doc) => {
+            const {tweet, createdAt, userId, username, photo} = doc.data();
+        })
     }
     useEffect(() => {
 
