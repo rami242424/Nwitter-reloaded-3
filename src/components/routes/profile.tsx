@@ -2,19 +2,19 @@ import styled from "styled-components"
 import { auth } from "../../firebase"
 
 const Wrapper = styled.div`
-    
+
 `;
-const AvatarUpload = styled.div`
-    
+const AvatarUpload = styled.label`
+
 `;
-const AvatarImg = styled.div`
-    
+const AvatarImg = styled.img`
+
 `;
-const AvatarInput = styled.div`
-    
+const AvatarInput = styled.input`
+    display: none;
 `;
-const UserName = styled.div`
-    
+const UserName = styled.span`
+
 `;
 
 export default function Profile(){
