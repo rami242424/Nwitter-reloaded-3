@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { auth } from "../../firebase"
+import { useState } from "react";
 
 const Wrapper = styled.div`
 
@@ -20,6 +21,8 @@ const UserName = styled.span`
 export default function Profile(){
     const user = auth.currentUser;
     //console.log(user, "user")
+    const [avatar, setAvatar] = useState(user?.photoURL);
+    
     return <Wrapper>
         <AvatarUpload>
             <AvatarImg/>
