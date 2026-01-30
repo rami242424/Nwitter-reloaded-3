@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import type { ITweet } from "../timeline";
+import Tweet from "../tweet";
 
 const Wrapper = styled.div`
     display: flex;
@@ -38,14 +39,17 @@ const UserName = styled.span`
 
 const Tweets = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: 10px;
 `;
 
 export default function Profile(){
     const user = auth.currentUser;
-    //console.log(user, "user")
-    const [avatar, setAvatar] = useState(user?.photoURL);
+    const [avatar, setAvatar] = useState<string | undefined>(
+        user?.photoURL ?? undefined
+    );
+
     const [tweets, setTweets] = useState<ITweet[]>([]);
     const onAvatarChange = async(e:React.ChangeEvent<HTMLInputElement>) => {
         const {files} = e.target;
@@ -62,6 +66,9 @@ export default function Profile(){
 
         }
     }
+    // const onTweetChange = async(e:React.ChangeEvent<>) => {
+
+    // }
     const fetchTweets = async () => {
         const tweetQuery = query(
             collection(database, "tweets"),
@@ -79,7 +86,7 @@ export default function Profile(){
         setTweets(tweets);
     }
     useEffect(() => {
-
+        fetchTweets();
     }, []);
     return <Wrapper>
         <AvatarUpload htmlFor="avatar">
@@ -93,6 +100,8 @@ export default function Profile(){
         </AvatarUpload>
         <AvatarInput onChange={onAvatarChange} id="avatar" type="file" accept="image/*" />
         <UserName>{user?.displayName ?? "Anonymous"}</UserName>
-        <Tweets></Tweets>
+        <Tweets>
+            {tweets.map(tweet => <Tweet key={tweet.id} {...tweet} />)}
+        </Tweets>
     </Wrapper>
 }

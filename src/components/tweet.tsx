@@ -34,6 +34,7 @@ const Payload = styled.p`
   font-size: 18px;
 `;
 
+const 
 const DeleteButton = styled.button`
   background-color: tomato;
   color: white;
@@ -45,6 +46,7 @@ const DeleteButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 `;
+const EditButton = styled.button``;
 
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   const user = auth.currentUser;
@@ -69,7 +71,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         <Username>{username}</Username>
         <Payload>{tweet}</Payload>
         {user?.uid === userId ? (
-          <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+          <>
+            <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+            <EditButton></EditButton>
+          </>
         ) : null}
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
