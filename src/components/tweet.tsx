@@ -34,9 +34,9 @@ const Payload = styled.p`
   font-size: 18px;
 `;
 
-const 
-const DeleteButton = styled.button`
-  background-color: tomato;
+const ActionButton = styled.button<{ $variant: "delete" | "edit" }>`
+  background-color: ${({ $variant}) => 
+    $variant === "delete" ? "tomato" : "dodgerblue"};
   color: white;
   font-weight: 600;
   border: 0;
@@ -46,7 +46,6 @@ const DeleteButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 `;
-const EditButton = styled.button``;
 
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   const user = auth.currentUser;
@@ -72,8 +71,8 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         <Payload>{tweet}</Payload>
         {user?.uid === userId ? (
           <>
-            <DeleteButton onClick={onDelete}>Delete</DeleteButton>
-            <EditButton></EditButton>
+            <ActionButton $variant="delete" onClick={onDelete}>Delete</ActionButton>
+            <ActionButton $variant="edit" >Edit</ActionButton>
           </>
         ) : null}
       </Column>
