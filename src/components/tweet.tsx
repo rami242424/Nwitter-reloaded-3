@@ -34,6 +34,8 @@ const Payload = styled.p`
   font-size: 18px;
 `;
 
+type ActionVariant = "delete" | "edit" | "save" | "cancel";
+
 const ActionButton = styled.button<{ $variant: "delete" | "edit" }>`
   background-color: ${({ $variant}) => 
     $variant === "delete" ? "tomato" : "dodgerblue"};
