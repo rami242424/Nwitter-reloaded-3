@@ -36,6 +36,16 @@ const Payload = styled.p`
 
 type ActionVariant = "delete" | "edit" | "save" | "cancel";
 
+const actionVariantStyleMap: Record<
+  ActionVariant, 
+  {bg: string}
+> = {
+  delete: {bg: "tomato"},
+  edit: {bg: "dodgerblut"},
+  save: {bg: "darkgreen"},
+  cancel: {bg: "gray"}
+};
+
 const ActionButton = styled.button<{ $variant: "delete" | "edit" }>`
   background-color: ${({ $variant}) => 
     $variant === "delete" ? "tomato" : "dodgerblue"};
