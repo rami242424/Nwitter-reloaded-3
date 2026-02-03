@@ -46,9 +46,9 @@ const actionVariantStyleMap: Record<
   cancel: {bg: "gray"}
 };
 
-const ActionButton = styled.button<{ $variant: "delete" | "edit" }>`
+const ActionButton = styled.button<{ $variant: ActionVariant }>`
   background-color: ${({ $variant}) => 
-    $variant === "delete" ? "tomato" : "dodgerblue"};
+    actionVariantStyleMap[$variant].bg};
   color: white;
   font-weight: 600;
   border: 0;
