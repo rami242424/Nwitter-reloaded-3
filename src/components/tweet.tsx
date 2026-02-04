@@ -33,7 +33,10 @@ const Payload = styled.p`
   margin: 10px 0px;
   font-size: 18px;
 `;
-
+const Buttons = styled.div`
+  display: flex;
+  gap: 8px;
+`;
 type ActionVariant = "delete" | "edit" | "save" | "cancel";
 
 const actionVariantStyleMap: Record<
@@ -41,7 +44,7 @@ const actionVariantStyleMap: Record<
   {bg: string}
 > = {
   delete: {bg: "tomato"},
-  edit: {bg: "dodgerblut"},
+  edit: {bg: "dodgerblue"},
   save: {bg: "darkgreen"},
   cancel: {bg: "gray"}
 };
@@ -82,10 +85,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         <Username>{username}</Username>
         <Payload>{tweet}</Payload>
         {user?.uid === userId ? (
-          <>
+          <Buttons>
             <ActionButton $variant="delete" onClick={onDelete}>Delete</ActionButton>
             <ActionButton $variant="edit" >Edit</ActionButton>
-          </>
+          </Buttons>
         ) : null}
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
