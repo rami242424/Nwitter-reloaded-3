@@ -75,12 +75,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       }
     } catch (e) {
       console.log(e);
-    } finally {
-      //
-    }
+    } 
   };
   const onEdit = async () => {
-
+    
   }
   return (
     <Wrapper>
