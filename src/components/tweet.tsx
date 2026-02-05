@@ -79,6 +79,9 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       //
     }
   };
+  const onEdit = async () => {
+
+  }
   return (
     <Wrapper>
       <Column>
@@ -87,7 +90,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         {user?.uid === userId ? (
           <Buttons>
             <ActionButton $variant="delete" onClick={onDelete}>Delete</ActionButton>
-            <ActionButton $variant="edit" >Edit</ActionButton>
+            <ActionButton $variant="edit" onClick={onEdit} >Edit</ActionButton>
           </Buttons>
         ) : null}
       </Column>
